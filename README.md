@@ -6,8 +6,7 @@ This is a Python-based fake log generator that simulates Palo Alto Networks (PAN
 - ✅ Simulates random source and destination IPs (public & private)
 - ✅ Includes realistic timestamps, ports, zones, and actions (allow, deny, drop)
 - ✅ Prepends log entries with timestamp, hostname, and a static 1 for authenticity
-- ✅ Runs continuously, printing new logs every 2 to 30 seconds
-- ✅ Supports manual stopping via CTRL + C
+- ✅ Runs continuously, printing new logs every 1-3 seconds
 
 ## Installation
 
