@@ -15,11 +15,11 @@ This is a Python-based fake log generator that simulates Palo Alto Networks (PAN
 2. Download the file `<this_github_repo>/src/Splunk_TA_paloalto_networks/bin/pan_log_generator.py`
 3. Copy that file into your Splunk instance: e.g.: `cp /tmp/pan_log_generator.py $SPLUNK_HOME/etc/apps/Splunk_TA_paloalto_networks/bin/`
 4. Download the file `<this_github_repo>/src/Splunk_TA_paloalto_networks/local/inputs.conf`
-4. Copy that file into your Splunk instance. But if your Splunk intance (this: `$SPLUNK_HOME/etc/apps/Splunk_TA_paloalto_networks/local/`) already has an inputs.conf in it, make sure you don't overwrite it. Instead, just append the new input stanza contained in the this repository:
+4. Copy that file into your Splunk instance. But if your Splunk intance (this: `$SPLUNK_HOME/etc/apps/Splunk_TA_paloalto_networks/local/`) already has an inputs.conf in it, make sure you don't overwrite it. Instead, just append the new input stanza contained in this repository:
 
 ```
 [script://$SPLUNK_HOME/etc/apps/Splunk_TA_paloalto_networks/bin/pan_log_generator.py]
-disabled = 0
+disabled = 1
 host = <your host here>
 index = <your index here>
 interval = -1
