@@ -43,5 +43,5 @@ The script continuously generates logs in real-time:
 
 
 ## Author
-daniel.l.astillero@gmail.com (accepts beer donations via Paypal)
-Watch my 35mm film vlogs on youtube.com/@grainfrizz
+- daniel.l.astillero@gmail.com (accepts beer donations via Paypal)
+- Watch my 35mm film vlogs on youtube.com/@grainfrizz
