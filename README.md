@@ -41,7 +41,7 @@ The script continuously generates logs in real-time:
 - Prints to STDIO (console) at random intervals that is 1-3 seconds.
 - With this party trick running alongside `Splunk_TA_paloalto_networks`, all its configurations like `props.conf` and `transforms.conf` should work, e.g.: Field Extractions, Source Type renaming from `sourcetype = pan_log` into `sourcetype = pan:traffic` if the log matches "TRAFFIC", and etc.
 
-With this script being
 
-## Written by
+## Author
 daniel.l.astillero@gmail.com (accepts beer donations via Paypal)
+Watch my 35mm film vlogs on youtube.com/@grainfrizz
