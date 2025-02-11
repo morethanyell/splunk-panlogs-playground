@@ -27,7 +27,9 @@ def generate_random_pan_log():
     generated_time = (datetime.datetime.now() - datetime.timedelta(seconds=random.randint(1, 30))).strftime("%Y/%m/%d %H:%M:%S")
     start_time = (datetime.datetime.now() - datetime.timedelta(seconds=random.randint(10, 120))).strftime("%Y/%m/%d %H:%M:%S")
     
-    log_type = random.choice(["SYSTEM", "TRAFFIC", "THREAT"])
+    log_type = random.choices(["SYSTEM", "TRAFFIC", "THREAT"],
+                             weights=[2, 90, 8],
+                             k=1)[0]
     
     serial_number = f"{random.randint(100000000000, 999999999999)}"
     session_id = random.randint(100000, 999999)
@@ -36,7 +38,9 @@ def generate_random_pan_log():
     dest_ip = generate_random_public_ipaddr()
     
     src_port = random.randint(1024, 65535)
-    dest_port = random.choice([80, 443, 53, 22, 3389, random.randint(1024, 65535)])  # Common + random port
+    dest_port = random.choice([80, 443, 53, 22, 3389, random.randint(1024, 65535)])
+    
+    src_user = random.choice(["admin", "morethanyell", "grainfrizz"])
     
     app = random.choice(["web-browsing", "ssl", "dns", "ssh", "ftp", "unknown-tcp"])
     action = random.choice(["allow", "deny", "drop"])
@@ -53,6 +57,8 @@ def generate_random_pan_log():
     country_src = random.choice(["United States", "Germany", "Japan", "Philippines", "Brazil"])
     country_dest = random.choice(["United States", "China", "Russia", "India", "France"])
     
+    transport = random.choice(["udp", "tcp", "icmp"])
+    
     user_agent = random.choice([
         "Mozilla/5.0 (Windows NT 10.0)", 
         "curl/7.68.0", 
@@ -62,17 +68,19 @@ def generate_random_pan_log():
     
     # Creating a fake Palo Alto log entry
     log_entry = [
-        "", receive_time, serial_number, log_type, "", generated_time,
+        "", receive_time, serial_number, log_type, "", "", generated_time,
         src_ip, dest_ip, "203.0.113.5", dest_ip, "Fake_Rule",
-        "admin", "", app, "vsys1", source_zone, destination_zone,
-        "ethernet1/1", "ethernet1/2", "log", generated_time,
-        session_id, 1, src_port, dest_port, random.randint(1024, 65535),
-        dest_port, "0x0", 6, action, bytes_sent + bytes_received,
-        bytes_sent, bytes_received, packets, start_time, 
-        random.randint(1, 300), category, random.randint(1000000, 9999999),
-        "0", country_src, country_dest, "", "", "", "",
-        "", user_agent, "", "", "", "", "", "", "", "", "", "", "",
-        "", "", "", "", "", "", "", "", ""
+        src_user, "", app, "vsys1", source_zone, destination_zone,
+        "ethernet1/1", "ethernet1/2", "log", "", session_id, random.randint(0, 12),
+        src_port, dest_port, random.randint(1024, 65535), dest_port,
+        "0x19", transport, action, bytes_sent + bytes_received, bytes_sent, bytes_received,
+        packets, start_time, random.randint(1, 300), category,
+        "", random.randint(1000000, 9999999), "0", country_src, country_dest,
+        "", random.randint(5, 500), random.randint(5, 500), user_agent,
+        "", "", "", "", "vsys1",
+        "PAN-FAKELOG-GEN-morethanyell-2025", "from-policy", 
+        "", "", random.randint(1000000, 9999999), random.randint(12, 24), random.randint(1000000, 9999999),
+        start_time, ""
     ]
     
     return ",".join(map(str, log_entry))  
